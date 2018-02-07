@@ -1,0 +1,13 @@
+name: LoupGarouPlugin
+main: com.paroxine.lg.Main
+version: 1.0
+commands:
+    roles:
+        description: Montre l'objectif de tous les roles
+        usage: /<command>
+    role:
+        description: Montre l'objectif du role donne ou du joueur
+        usage: /<command> [role]
+    lg:
+        description: Gestion de la partie
+        usage: /<command> [start]
