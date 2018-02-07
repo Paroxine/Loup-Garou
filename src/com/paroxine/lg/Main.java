@@ -137,5 +137,3 @@ public class Main extends JavaPlugin {
 		}
 	}
 }
-
-//Commentaire inutile

@@ -40,6 +40,3 @@ public enum Role {
 		}
 	}
 }
-
-
-//Commentaire inutile
