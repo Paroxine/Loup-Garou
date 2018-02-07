@@ -32,24 +32,54 @@ public class Main extends JavaPlugin {
 			player.sendMessage(roleVillageois());
 			player.sendMessage(roleLoupGarou());
 			*/
-			getLogger().info("Getting the list");
-			String[] playerNameList = lgPlayerList.getPlayerList(player);
-			getLogger().info("Got the list");
-			player.sendMessage(String.valueOf(playerNameList.length));
+			String[] playerNameList = lgPlayerList.getPlayerList();
 			for (int i = 0; i < playerNameList.length; i++) {
 				String playerName = playerNameList[i];
 				player.sendMessage(playerName + " : " + lgPlayerList.getPlayerRole(playerName));
 			}
 			return true;
 		case "role":
-			if (args.length == 1) {
-				sendRoleDescription(player, args[0].toLowerCase());
+			switch (args.length) {
+			case 0:
+				sendRoleDescription(player, lgPlayerList.getPlayerRole(player.getName()));
 				return true;
-			} else {
-				String playerRoleName = Role.getRoleName(lgPlayerList.getPlayerRole(player.getName()));
-				sendRoleDescription(player, playerRoleName);
+			case 1:
+				switch (args[0].toLowerCase()) {
+				case "set":
+					player.sendMessage("Veuillez préciser le rôle à attribuer.");
+					return true;
+				case "player":
+					player.sendMessage("Veuillez préciser le joeueur.");
+					return true;
+				default:
+					sendRoleDescription(player, args[0]);
+					return true;
+				}
+			case 2:
+				switch (args[0].toLowerCase()) {
+				case "set":
+					this.lgPlayerList.setPlayerRole(player.getName(), args[1].toLowerCase());
+					return true;
+				case "player":
+					sendRoleDescription(player, lgPlayerList.getPlayerRole(args[1]));
+					return true;
+				default:
+					player.sendMessage("Commande inconnue.");
+					return true;
+				}
+			case 3:
+				switch (args[0].toLowerCase()) {
+				case "set":
+					this.lgPlayerList.setPlayerRole(args[2].toLowerCase(), args[1].toLowerCase());
+					return true;
+				default:
+					player.sendMessage("Commande inconnue.");
+					return true;
+				}
+			default:
+				player.sendMessage("Nombre d'arguments incorrect.");
 				return true;
-			}
+			}		
 		case "lg":
 			lg(args);
 			return true;
@@ -58,7 +88,9 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void sendRoleDescription(Player player, String roleName) {
+		player.sendMessage(roleName);
 		Role role = Role.getRoleByName(roleName);
+		player.sendMessage(roleName);
 		switch (role) {
 		case VILLAGEOIS:
 			player.sendMessage(roleVillageois());
@@ -70,7 +102,7 @@ public class Main extends JavaPlugin {
 			player.sendMessage("Vous n'avez pas de role.");
 			return;
 		default:
-			player.sendMessage("Role " + ChatColor.YELLOW + roleName + ChatColor.YELLOW + " inconnu");
+			player.sendMessage("Role inconnu : " + ChatColor.YELLOW + roleName);
 			return;
 		}
 	}
@@ -88,8 +120,13 @@ public class Main extends JavaPlugin {
 	}
 	
 	public void start() {
+		if (Bukkit.getOnlinePlayers().size() < 3) {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				p.sendMessage("Il doit y avoir au moins 3 joueur pour jouer.");
+			}
+		}
 		for (Player p : Bukkit.getOnlinePlayers()){
-			lgPlayerList.addPlayer(p.getName());
+			this.lgPlayerList.addPlayer(p.getName());
 		}
 	}
 	
@@ -100,3 +137,5 @@ public class Main extends JavaPlugin {
 		}
 	}
 }
+
+//Commentaire inutile

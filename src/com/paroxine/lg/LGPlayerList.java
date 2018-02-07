@@ -35,11 +35,14 @@ public class LGPlayerList {
 		}
 	}
 	
-	public String[] getPlayerList(Player player) {
-		player.sendMessage("In getList");
-		player.sendMessage(String.valueOf(this.playerList.size()));
+	public void setPlayerRole(String name, String roleName) {
+		LGPlayer lgPlayer = this.playerList.get(name);
+		lgPlayer.setRole(Role.getRoleByName(roleName));
+		this.playerList.put(name, lgPlayer);
+	}
+	
+	public String[] getPlayerList() {
 		Set<String> keyset = this.playerList.keySet();
-		player.sendMessage("Got the keys.");
-		return (String[]) keyset.toArray();
+		return keyset.toArray(new String[keyset.size()]);
 	}
 }
