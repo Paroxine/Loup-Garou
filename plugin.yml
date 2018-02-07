@@ -7,7 +7,7 @@ commands:
         usage: /<command>
     role:
         description: Montre l'objectif du role donne ou du joueur
-        usage: /<command> [role]
+        usage: /<command> [role/set/player] [onlinePlayer]
     lg:
         description: Gestion de la partie
         usage: /<command> [start]

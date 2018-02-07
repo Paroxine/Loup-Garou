@@ -36,7 +36,7 @@ public enum Role {
 			case NONE:
 				return "Aucun";
 			default:
-				return "Rôle inconnu";
+				return "";
 		}
 	}
 }
