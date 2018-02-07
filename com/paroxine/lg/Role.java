@@ -11,7 +11,7 @@ public enum Role {
 	private static Random random = new Random();;
 	
 	public static Role randomRole() {
-		return values()[random.nextInt(values().length)];
+		return values()[random.nextInt(values().length-2)];
 	}
 	
 	public static Role getRoleByName(String name) {

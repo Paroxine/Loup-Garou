@@ -10,6 +10,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin {
 
 	private LGPlayerList lgPlayerList = new LGPlayerList();
+	private LGListener lgListener = new LGListener(lgPlayerList);
 	
 	@Override
 	public void onEnable() {
@@ -124,6 +125,7 @@ public class Main extends JavaPlugin {
 		}
 		for (Player p : Bukkit.getOnlinePlayers()){
 			this.lgPlayerList.addPlayer(p.getName());
+			this.lgListener.setPlayerList(lgPlayerList);
 		}
 	}
 	
