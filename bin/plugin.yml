@@ -10,4 +10,4 @@ commands:
         usage: /<command> [role/set/player] [onlinePlayer]
     lg:
         description: Gestion de la partie
-        usage: /<command> [start]
+        usage: /<command> [start/stop/spawn/action]

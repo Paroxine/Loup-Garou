@@ -5,10 +5,11 @@ import java.util.Random;
 public enum Role {
 	VILLAGEOIS,
 	LOUPGAROU,
+	SORCIERE,
 	NONE,
 	UNDEFINED;
 	
-	private static Random random = new Random();;
+	private static Random random = new Random();
 	
 	public static Role randomRole() {
 		return values()[random.nextInt(values().length-2)];
@@ -20,6 +21,8 @@ public enum Role {
 				return VILLAGEOIS;
 			case "loup-garou":
 				return LOUPGAROU;
+			case "sorcière":
+				return SORCIERE;
 			case "aucun":
 				return NONE;
 			default:
@@ -33,6 +36,8 @@ public enum Role {
 				return "Villageois";
 			case LOUPGAROU:
 				return "Loup-Garou";
+			case SORCIERE:
+				return "Sorcière";
 			case NONE:
 				return "Aucun";
 			default:
